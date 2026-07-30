@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles.css">
+  <title>Rick&Morty App</title>
+</head>
+<body>
+
+<form method="GET" action="/search">
+  <input type="text" name="name" placeholder="Search characters...">
+  <button type="submit">Search</button>
+</form>
+  
+<div class="byname">
+<% if (results) { %>
+  <ul>
+    <% results.forEach(function(searchCharacter) { %>
+      <li>Name: <%= searchCharacter.name %></li>
+      <li>Gender: <%= searchCharacter.gender %></li>
+      <li>Location: <%= searchCharacter.location %></li>
+      <li>Origin: <%= searchCharacter.origin %></li>
+      <li>Species: <%= searchCharacter.species %></li>
+      <li>Status: <%= searchCharacter.status %></li>
+    <% }); %>
+  </ul>
+<% } %>
+<a href="/list">List all characters</a>
+</div>
+
+<div class="list">
+
+</div>
+
+  
+  <% if (user) { %>
+    <p>Welcome, <%= user.displayName %>!</p>
+    <p><%= user.emails[0].value %></p>
+    <img src="<%= user.photos[0].value %>" alt="avatar" width="64">
+    <br><br>
+    <a href="/logout">Sign out</a>
+  <% } else { %>
+    <h1>My App</h1>
+    <p>Sign in to continue.</p>
+    <a href="/auth/google">Sign in with Google</a>
+  <% } %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
